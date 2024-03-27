@@ -1,6 +1,7 @@
+import { IRest } from "../../../models";
 import { IButton } from "./button.model";
 
-export function Button({ children, onClick, ...rest }: IButton) {
+export function Button({ children, onClick, ...rest }: IButton & IRest) {
   const buttonStyles =
     "bg-green border-2 border-green min-w-min rounded-xl cursor-pointer py-3 px-5 text-white text-base font-semibold	transition-all duration-300 ease-out";
   const buttonStylesHover = "hover:bg-dark-green hover:border-dark-green";
