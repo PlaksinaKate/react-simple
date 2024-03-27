@@ -1,10 +1,4 @@
-import { ReactNode } from "react";
-
-interface IButton {
-  children: ReactNode;
-  onClick?: () => void;
-  [x: string]: unknown;
-}
+import { IButton } from "./button.model";
 
 export function Button({ children, onClick, ...rest }: IButton) {
   const buttonStyles =
