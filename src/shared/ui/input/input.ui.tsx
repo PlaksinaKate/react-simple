@@ -7,17 +7,31 @@ export function Input({
   type = "text",
   required,
   value,
-  placeholder,
+  error,
   ...rest
 }: IInput & IRest) {
-  const wrStyles = 'bg-white rounded-xl border border-light-gray pl-3 pr-3.5 py-4 w-min transition-all duration-300 ease-out has-[:focus]:border-green has-[:focus]:py-2'
-  const labelStyles = 'text-dark-gray text-base font-semibold transition-all duration-300 ease-out has-[:focus]:text-xs has-[:focus]:font-normal';
-  const inputStyles = 'text-dark-gray text-base border-0 outline-none transition-all duration-300 ease-out	has-[:focus]:'
-  
+  const labelStyles = "group";
+  const spanStyles =
+    "absolute top-6 z-10 left-6 text-dark-gray text-base font-semibold transition-all duration-300 ease-out group-has-[:focus]:text-xs group-has-[:focus]:font-normal group-has-[:focus]:top-4";
+  const inputStyles =
+    "relative z-0 bg-white rounded-xl text-black border border-light-gray pl-3 pr-3.5 pt-6 pb-2 w-min transition-all duration-300 ease-out focus:border-green text-dark-gray text-base outline-none transition-all duration-300 ease-out";
+
+  const isErrorStyles = error ? "border-red" : null;
+  const errorStyles = "text-red text-sm m-0.5";
+
   return (
-    <div className={wrStyles}>
-      <Label required={required} className={labelStyles}>{label}</Label>
-      <input className={inputStyles} type={type} value={value} placeholder={placeholder} required {...rest} />
-    </div>
+    <>
+      <Label required={required} className={labelStyles}>
+        <span className={spanStyles}>{label}</span>
+        <input
+          className={`${inputStyles} ${isErrorStyles}`}
+          type={type}
+          value={value}
+          required
+          {...rest}
+        />
+      </Label>
+      <div className={errorStyles}>{error}</div>
+    </>
   );
 }

@@ -14,6 +14,6 @@ type Template = StoryObj<typeof Input>;
 export const Default:  Template = {
   args :{
     label: 'Label',
-    placeholder: 'Плейсхолдер'
+    
   },
 };
