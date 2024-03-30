@@ -1,3 +1,5 @@
 import { LoadingIcon } from "./Loading";
+import { AlertMessageIcon } from "./AlertMessageIcon";
+import { CloseIcon } from "./Close";
 
-export { LoadingIcon };
+export { LoadingIcon, AlertMessageIcon, CloseIcon };
