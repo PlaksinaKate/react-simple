@@ -10,9 +10,9 @@ export function Input({
   error,
   ...rest
 }: IInput & IRest) {
-  const labelStyles = "group";
+  const labelStyles = "group relative block";
   const spanStyles =
-    "absolute top-6 z-10 left-6 text-dark-gray text-base font-semibold transition-all duration-300 ease-out group-has-[:focus]:text-xs group-has-[:focus]:font-normal group-has-[:focus]:top-4";
+    "absolute top-4 z-10 left-4 text-dark-gray text-base font-semibold transition-all duration-300 ease-out group-has-[:focus]:text-xs group-has-[:focus]:font-normal group-has-[:focus]:top-2";
   const inputStyles =
     "relative z-0 bg-white rounded-xl text-black border border-light-gray pl-3 pr-3.5 pt-6 pb-2 w-min transition-all duration-300 ease-out focus:border-green text-dark-gray text-base outline-none transition-all duration-300 ease-out";
 

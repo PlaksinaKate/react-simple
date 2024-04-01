@@ -10,7 +10,7 @@ export function Registration() {
           <Input
             label={"Придумайте пароль"}
             required
-            value={"trin"}
+            value={""}
             type={""}
           />
           <Input label={"Повторите пароль"} required value={""} type={""} />
