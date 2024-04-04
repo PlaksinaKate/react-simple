@@ -12,9 +12,9 @@ export function Registration() {
       <div className={formWr}>
         <Title>Регистрация</Title>
         <form>
-          <Input label={"E-mail"} required value={""} type={""} />
-          <Input label={"Придумайте пароль"} required value={""} type={""} />
-          <Input label={"Повторите пароль"} required value={""} type={""} />
+          <Input label={"E-mail"} required value={""} />
+          <Input label={"Придумайте пароль"} required value={""} type={"password"} />
+          <Input label={"Повторите пароль"} required value={""} type={"password"} />
           <Button>Зарегистрироваться</Button>
         </form>
       </div>
