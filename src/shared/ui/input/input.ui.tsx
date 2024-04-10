@@ -28,8 +28,8 @@ export function Input({
           value={value}
           {...rest}
         />
+        <div className={errorStyles}>{error}</div>
       </Label>
-      <div className={errorStyles}>{error}</div>
     </>
   );
 }

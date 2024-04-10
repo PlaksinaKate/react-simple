@@ -20,22 +20,27 @@ export function Registration() {
 
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm<IRegistrationForm>({
-    resolver: yupResolver(validationSchema)
-});
+    resolver: yupResolver(validationSchema),
+  });
+
+  const onSubmitHandler = (values: IRegistrationForm) => {
+    console.log(values)
+  }
 
   return (
     <div>
       <div className={formWr}>
         <Title>Регистрация</Title>
-        <form>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
           <Input
             label={"E-mail"}
             value={""}
             {...register("email")}
             error={errors.email?.message}
-          />  
+          />
           <Input
             label={"Придумайте пароль"}
             value={""}
