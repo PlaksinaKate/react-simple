@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button, Input, Title } from "../../shared/ui";
-import { useForm } from "react-hook-form";
+import { Path, useForm } from "react-hook-form";
 import { IRegistrationForm } from "./registration.module";
 import { MESSAGES } from "../../shared/consts/messages";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { ChangeEvent } from "react";
 
 const validationSchema = yup.object({
   email: yup.string().required(MESSAGES.required),
@@ -21,14 +22,25 @@ export function Registration() {
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<IRegistrationForm>({
     resolver: yupResolver(validationSchema),
   });
 
+  const watchFields = watch(["email", "password", "repeatPassword"]);
+
   const onSubmitHandler = (values: IRegistrationForm) => {
-    console.log(values)
-  }
+    console.log(values);
+  };
+
+  const onChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    field: Path<IRegistrationForm>
+  ) => {
+    setValue(field, e.target.value);
+  };
 
   return (
     <div>
@@ -37,23 +49,32 @@ export function Registration() {
         <form onSubmit={handleSubmit(onSubmitHandler)}>
           <Input
             label={"E-mail"}
-            value={""}
+            value={watchFields[0]}
             {...register("email")}
             error={errors.email?.message}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              onChange(e, "email")
+            }
           />
           <Input
             label={"Придумайте пароль"}
-            value={""}
+            value={watchFields[1]}
             type={"password"}
             {...register("password")}
             error={errors.password?.message}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              onChange(e, "password")
+            }
           />
           <Input
             label={"Повторите пароль"}
-            value={""}
+            value={watchFields[2]}
             type={"password"}
             {...register("repeatPassword")}
             error={errors.repeatPassword?.message}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              onChange(e, "repeatPassword")
+            }
           />
           <Button>Зарегистрироваться</Button>
         </form>
