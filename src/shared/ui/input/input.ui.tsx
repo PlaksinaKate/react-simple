@@ -5,7 +5,6 @@ import { IInput } from "./input.model";
 export function Input({
   label,
   type = "text",
-  required,
   value,
   error,
   ...rest
@@ -21,13 +20,12 @@ export function Input({
 
   return (
     <>
-      <Label required={required} className={labelStyles}>
+      <Label className={labelStyles}>
         <span className={spanStyles}>{label}</span>
         <input
           className={`${inputStyles} ${isErrorStyles}`}
           type={type}
           value={value}
-          required
           {...rest}
         />
       </Label>
