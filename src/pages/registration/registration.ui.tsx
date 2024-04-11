@@ -8,7 +8,7 @@ import * as yup from "yup";
 import { ChangeEvent } from "react";
 
 const validationSchema = yup.object({
-  email: yup.string().required(MESSAGES.required),
+  email: yup.string().required(MESSAGES.required).email(MESSAGES.emailError),
   password: yup.string().required(MESSAGES.required),
   repeatPassword: yup.string().required(MESSAGES.required),
 });
