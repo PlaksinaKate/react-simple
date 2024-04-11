@@ -11,7 +11,7 @@ export function Input({
 }: IInput & IRest) {
   const labelStyles = "group relative block mb-6";
   const spanStyles =
-    `absolute top-4 z-10 left-4 text-dark-gray text-base font-semibold transition-all duration-300 ease-out ${value ? 'top-2 font-normal text-xs': null}`;
+    `absolute top-4 z-10 left-3.5 text-dark-gray text-base font-semibold transition-all duration-300 ease-out ${value ? 'top-1.5 font-normal text-xs': null}`;
   const inputStyles =
     "w-full relative z-0 bg-white rounded-xl text-black border border-light-gray pl-3 pr-3.5 pt-6 pb-2 transition-all duration-300 ease-out focus:border-green text-dark-gray text-base outline-none transition-all duration-300 ease-out";
 
