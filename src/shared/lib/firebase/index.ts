@@ -1,5 +1,5 @@
 import { user } from "./user";
 
-export const firebase = {
+export const firebaseAPI = {
   user,
 };

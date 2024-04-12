@@ -6,6 +6,7 @@ import { MESSAGES } from "../../shared/consts/messages";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ChangeEvent } from "react";
+import { firebaseAPI } from "../../shared/lib/firebase";
 
 const validationSchema = yup.object({
   email: yup.string().required(MESSAGES.required).email(MESSAGES.emailError),
@@ -32,7 +33,9 @@ export function Registration() {
   const watchFields = watch(["email", "password", "repeatPassword"]);
 
   const onSubmitHandler = (values: IRegistrationForm) => {
-    console.log(values);
+    const { email, password } = values;
+
+    firebaseAPI.user.registration({ email, password });
   };
 
   const onChange = (
@@ -76,7 +79,7 @@ export function Registration() {
               onChange(e, "repeatPassword")
             }
           />
-          <Button>Зарегистрироваться</Button>
+          <Button type="submit">Зарегистрироваться</Button>
         </form>
       </div>
       <div className={login}>
