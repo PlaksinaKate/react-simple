@@ -11,7 +11,12 @@ import { firebaseAPI } from "../../shared/lib/firebase";
 const validationSchema = yup.object({
   email: yup.string().required(MESSAGES.required).email(MESSAGES.emailError),
   password: yup.string().required(MESSAGES.required),
-  repeatPassword: yup.string().required(MESSAGES.required),
+  repeatPassword: yup
+    .string()
+    .required(MESSAGES.required)
+    .test("passwords-match", MESSAGES.repeatPassword, function (value) {
+      return this.parent.password === value;
+    }),
 });
 
 export function Registration() {
@@ -34,7 +39,6 @@ export function Registration() {
 
   const onSubmitHandler = (values: IRegistrationForm) => {
     const { email, password } = values;
-
     firebaseAPI.user.registration({ email, password });
   };
 
