@@ -7,7 +7,7 @@ import {
 import { PATHS } from "../../shared/lib/react-router";
 import { GuestLayout } from "../../pages/layouts";
 import { registerPageRoute } from "../../pages/registration";
-import { loginPageRoute } from "../../pages/login/login.routes";
+import { loginPageRoute } from "../../pages/login";
 
 function Error() {
   const error = useRouteError();
