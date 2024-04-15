@@ -7,6 +7,7 @@ import {
 import { PATHS } from "../../shared/lib/react-router";
 import { GuestLayout } from "../../pages/layouts";
 import { registerPageRoute } from "../../pages/registration";
+import { loginPageRoute } from "../../pages/login/login.routes";
 
 function Error() {
   const error = useRouteError();
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
     children: [
       {
         element: <GuestLayout />,
-        children: [registerPageRoute],
+        children: [registerPageRoute, loginPageRoute],
       },
       {
         loader: async () => redirect(PATHS.page404),
