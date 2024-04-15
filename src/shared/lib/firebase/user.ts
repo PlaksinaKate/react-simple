@@ -1,11 +1,11 @@
-import { getAuth, createUserWithEmailAndPassword, UserCredential, User, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, UserCredential, signInWithEmailAndPassword } from "firebase/auth";
 import { IUser } from "./user.model";
 
-const registration = async ({email, password}: IUser): Promise<string | User> => {
+const registration = async ({email, password}: IUser): Promise<string | UserCredential> => {
   const auth = getAuth();
   const result = await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential: UserCredential) => {
-      return userCredential.user;
+      return userCredential;
     })
     .catch((error) => {
       const errorMessage: string = error.message;
@@ -15,11 +15,11 @@ const registration = async ({email, password}: IUser): Promise<string | User> =>
     return result
 }
 
-const login = async ({email, password}: IUser): Promise<string | User> => {
+const login = async ({email, password}: IUser): Promise<string | UserCredential> => {
   const auth = getAuth();
   const result = signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    return userCredential.user;
+  .then((userCredential: UserCredential) => {
+    return userCredential;
   })
   .catch((error) => {
     const errorMessage: string = error.message;
