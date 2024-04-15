@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { ChangeEvent, useState } from "react";
 import { firebaseAPI } from "../../shared/lib/firebase";
 import { LoadingIcon } from "../../shared/ui/Icons";
+import { PATHS } from "../../shared/lib/react-router";
 
 const validationSchema = yup.object({
   email: yup.string().required(MESSAGES.required).email(MESSAGES.emailError),
@@ -99,7 +100,7 @@ export function Registration() {
       </div>
       <div className={login}>
         Уже зарегистрированы?{" "}
-        <Link className={loginLink} to={"#"}>
+        <Link className={loginLink} to={PATHS.login}>
           Войти
         </Link>
       </div>

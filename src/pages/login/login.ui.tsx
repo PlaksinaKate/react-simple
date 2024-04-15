@@ -84,7 +84,7 @@ export function Login() {
       </div>
       <div className={login}>
         Ещё не зарегистрированы? {" "}
-        <Link className={loginLink} to={'#'}>
+        <Link className={loginLink} to={PATHS.registration}>
           Зарегистрироваться  
         </Link>
       </div>
