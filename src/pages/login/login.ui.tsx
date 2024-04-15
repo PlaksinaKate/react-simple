@@ -7,6 +7,8 @@ import * as yup from "yup";
 import { ChangeEvent, useState } from "react";
 import { LoadingIcon } from "../../shared/ui/Icons";
 import { IUser } from "../../shared/lib/firebase/user.model";
+import { firebaseAPI } from "../../shared/lib/firebase";
+import { PATHS } from "../../shared/lib/react-router";
 
 const validationSchema = yup.object({
   email: yup.string().required(MESSAGES.required).email(MESSAGES.emailError),
@@ -33,6 +35,11 @@ export function Login() {
   const watchFields = watch(["email", "password"]);
 
   const onSubmitHandler = async (values: IUser) => {
+    setLoading(true);
+    
+    const { email, password } = values;
+    const result = await firebaseAPI.user.login({ email, password });
+    if (result) setLoading(false);
   };
 
   const onChange = (
@@ -77,7 +84,7 @@ export function Login() {
       </div>
       <div className={login}>
         Ещё не зарегистрированы? {" "}
-        <Link className={loginLink} to={"#"}>
+        <Link className={loginLink} to={'#'}>
           Зарегистрироваться  
         </Link>
       </div>
