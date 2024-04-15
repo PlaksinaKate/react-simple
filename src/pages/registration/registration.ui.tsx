@@ -5,8 +5,9 @@ import { IRegistrationForm } from "./registration.module";
 import { MESSAGES } from "../../shared/consts/messages";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { firebaseAPI } from "../../shared/lib/firebase";
+import { LoadingIcon } from "../../shared/ui/Icons";
 
 const validationSchema = yup.object({
   email: yup.string().required(MESSAGES.required).email(MESSAGES.emailError),
@@ -24,6 +25,7 @@ export function Registration() {
   const login = "text-center mt-6 text-sm	";
   const loginLink =
     "underline decoration-dashed decoration-dark-gray decoration-1 underline-offset-2	";
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -37,9 +39,12 @@ export function Registration() {
 
   const watchFields = watch(["email", "password", "repeatPassword"]);
 
-  const onSubmitHandler = (values: IRegistrationForm) => {
+  const onSubmitHandler = async (values: IRegistrationForm) => {
+    setLoading(true);
+    
     const { email, password } = values;
-    firebaseAPI.user.registration({ email, password });
+    const result = await firebaseAPI.user.registration({ email, password });
+    if (result) setLoading(false);
   };
 
   const onChange = (
@@ -83,7 +88,13 @@ export function Registration() {
               onChange(e, "repeatPassword")
             }
           />
-          <Button type="submit">Зарегистрироваться</Button>
+          <Button disabled={loading} type="submit">
+            {!loading ? (
+              "Зарегистрироваться"
+            ) : (
+              <LoadingIcon width="25px" height="25px" />
+            )}
+          </Button>
         </form>
       </div>
       <div className={login}>

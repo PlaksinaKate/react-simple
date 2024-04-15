@@ -1,21 +1,18 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, UserCredential, User } from "firebase/auth";
 import { IUser } from "./user.model";
 
-const registration = ({email, password}: IUser) => {
+const registration = async ({email, password}: IUser): Promise<string | User> => {
   const auth = getAuth();
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up
-      console.log(userCredential.user)
-      // ...
+  const result = await createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential: UserCredential) => {
+      return userCredential.user;
     })
     .catch((error) => {
-      //const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorMessage)
-      
-      // ..
+      const errorMessage: string = error.message;
+      return errorMessage
     });
+
+    return result
 }
 
 export const user = {
