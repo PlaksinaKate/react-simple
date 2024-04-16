@@ -83,7 +83,7 @@ export function ChangeUserData() {
         </form>
       </div>
       <div className={login}>
-        <Link className={loginLink} to={PATHS.registration}>
+        <Link className={loginLink} to={PATHS.login}>
           Выйти
         </Link>
       </div>
