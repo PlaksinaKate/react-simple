@@ -3,37 +3,34 @@ import {
   createUserWithEmailAndPassword,
   UserCredential,
   signInWithEmailAndPassword,
+  User,
 } from "firebase/auth";
 import { IUser } from "./user.model";
-import { useDispatch } from "react-redux";
+import { store } from "../redux/store";
 import { setUser } from "../redux/slices/user-slice";
 
 const registration = async ({
   email,
   password,
-}: IUser): Promise<string | UserCredential> => {
+}: IUser): Promise<User | string> => {
   const auth = getAuth();
-  const dispatch = useDispatch();
 
-  const result = await createUserWithEmailAndPassword(auth, email, password)
+  return await createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential: UserCredential) => {
       const { email, uid, refreshToken } = userCredential.user;
-      dispatch(
+      store.dispatch(
         setUser({
           email,
           id: uid,
           token: refreshToken,
         })
       );
-
-      return userCredential;
+      return userCredential.user;
     })
     .catch((error) => {
       const errorMessage: string = error.message;
       return errorMessage;
     });
-
-  return result;
 };
 
 const login = async ({
@@ -41,12 +38,11 @@ const login = async ({
   password,
 }: IUser): Promise<string | UserCredential> => {
   const auth = getAuth();
-  const dispatch = useDispatch();
 
-  const result = signInWithEmailAndPassword(auth, email, password)
+  return await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential: UserCredential) => {
       const { email, uid, refreshToken } = userCredential.user;
-      dispatch(
+      store.dispatch(
         setUser({
           email,
           id: uid,
@@ -59,8 +55,6 @@ const login = async ({
       const errorMessage: string = error.message;
       return errorMessage;
     });
-
-  return result;
 };
 
 export const user = {

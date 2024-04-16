@@ -9,9 +9,9 @@ export function LoadingIcon({ ...rest }: IRest) {
       x="0px"
       y="0px"
       viewBox="0 0 100 100"
-      enable-background="new 0 0 0 0"
-      {...rest}
+      enableBackground="new 0 0 0 0"
       className="ml-auto mr-auto mt-0 mb-0"
+      {...rest}
     >
       <path
         fill="currentColor"
