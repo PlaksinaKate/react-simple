@@ -22,6 +22,7 @@
 -  React Hook Form;
 -  React Router;
 -  Feature-Sliced Design;
--  Storybook.
+-  Storybook;
+-  Redux Toolkit.
 
 
