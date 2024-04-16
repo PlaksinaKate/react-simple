@@ -9,6 +9,8 @@ import { Button, Input, Title } from "../../shared/ui";
 import { LoadingIcon } from "../../shared/ui/Icons";
 import { PATHS } from "../../shared/lib/react-router";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { removeUser } from "../../shared/lib/redux/slices/user-slice";
 
 const validationSchema = yup.object({
   email: yup.string().required(MESSAGES.required).email(MESSAGES.emailError),
@@ -21,6 +23,7 @@ export function ChangeUserData() {
   const loginLink =
     "underline decoration-dashed decoration-dark-gray decoration-1 underline-offset-2	";
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -48,6 +51,10 @@ export function ChangeUserData() {
   ) => {
     setValue(field, e.target.value);
   };
+
+  const logoutUser = () => {
+    dispatch(removeUser())
+  }
   
   return (
     <div>
@@ -73,7 +80,7 @@ export function ChangeUserData() {
               onChange(e, "password")
             }
           />
-          <Button disabled={loading} type="submit">
+          <Button disabled={loading} type="submit" onClick={logoutUser}>
             {!loading ? (
               "Сохранить"
             ) : (
