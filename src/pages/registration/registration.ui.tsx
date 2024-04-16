@@ -42,7 +42,7 @@ export function Registration() {
 
   const onSubmitHandler = async (values: IRegistrationForm) => {
     setLoading(true);
-    
+
     const { email, password } = values;
     const result = await firebaseAPI.user.registration({ email, password });
     if (result) setLoading(false);
