@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Input, Title } from "../../shared/ui";
 import { Path, useForm } from "react-hook-form";
 import { IRegistrationForm } from "./registration.module";
@@ -8,6 +8,7 @@ import * as yup from "yup";
 import { ChangeEvent, useState } from "react";
 import { firebaseAPI } from "../../shared/lib/firebase";
 import { PATHS } from "../../shared/lib/react-router";
+import { useAuth } from "../../shared/hooks";
 
 const validationSchema = yup.object({
   email: yup.string().required(MESSAGES.required).email(MESSAGES.emailError),
@@ -26,6 +27,8 @@ export function Registration() {
   const loginLink =
     "underline decoration-dashed decoration-dark-gray decoration-1 underline-offset-2	";
   const [loading, setLoading] = useState(false);
+  const { isAuth } = useAuth();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -45,6 +48,7 @@ export function Registration() {
     const { email, password } = values;
     const result = await firebaseAPI.user.registration({ email, password });
     if (result) setLoading(false);
+    if(isAuth) navigate(PATHS.changeUserData)
   };
 
   const onChange = (

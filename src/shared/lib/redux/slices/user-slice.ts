@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { IUserSlice } from "./user-slice.modules";
 
-const initialState = {
+const initialState: IUserSlice = {
   email: null,
   token: null,
   id: null,
