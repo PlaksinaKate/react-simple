@@ -7,7 +7,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ChangeEvent, useState } from "react";
 import { firebaseAPI } from "../../shared/lib/firebase";
-import { LoadingIcon } from "../../shared/ui/Icons";
 import { PATHS } from "../../shared/lib/react-router";
 
 const validationSchema = yup.object({

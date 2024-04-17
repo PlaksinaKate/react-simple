@@ -6,7 +6,6 @@ import { MESSAGES } from "../../shared/consts/messages";
 import * as yup from "yup";
 import { ChangeEvent, useState } from "react";
 import { Button, Input, Title } from "../../shared/ui";
-import { LoadingIcon } from "../../shared/ui/Icons";
 import { PATHS } from "../../shared/lib/react-router";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";

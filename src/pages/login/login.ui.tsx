@@ -5,7 +5,6 @@ import { MESSAGES } from "../../shared/consts/messages";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ChangeEvent, useState } from "react";
-import { LoadingIcon } from "../../shared/ui/Icons";
 import { IUser } from "../../shared/lib/firebase/user.model";
 import { firebaseAPI } from "../../shared/lib/firebase";
 import { PATHS } from "../../shared/lib/react-router";
