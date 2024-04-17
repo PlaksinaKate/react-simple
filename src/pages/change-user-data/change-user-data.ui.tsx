@@ -39,23 +39,20 @@ export function ChangeUserData() {
 
   const onSubmitHandler = async (values: IUser) => {
     setLoading(true);
-    
+
     const { email, password } = values;
     const result = await firebaseAPI.user.login({ email, password });
     if (result) setLoading(false);
   };
 
-  const onChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    field: Path<IUser>
-  ) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>, field: Path<IUser>) => {
     setValue(field, e.target.value);
   };
 
   const logoutUser = () => {
-    dispatch(removeUser())
-  }
-  
+    dispatch(removeUser());
+  };
+
   return (
     <div>
       <div className={formWr}>
@@ -80,12 +77,13 @@ export function ChangeUserData() {
               onChange(e, "password")
             }
           />
-          <Button disabled={loading} type="submit" onClick={logoutUser}>
-            {!loading ? (
-              "Сохранить"
-            ) : (
-              <LoadingIcon width="25px" height="25px" />
-            )}
+          <Button
+            disabled={loading}
+            isLoading={loading}
+            type="submit"
+            onClick={logoutUser}
+          >
+            "Сохранить"
           </Button>
         </form>
       </div>

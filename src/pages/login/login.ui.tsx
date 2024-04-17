@@ -36,16 +36,13 @@ export function Login() {
 
   const onSubmitHandler = async (values: IUser) => {
     setLoading(true);
-    
+
     const { email, password } = values;
     const result = await firebaseAPI.user.login({ email, password });
     if (result) setLoading(false);
   };
 
-  const onChange = (
-    e: ChangeEvent<HTMLInputElement>,
-    field: Path<IUser>
-  ) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>, field: Path<IUser>) => {
     setValue(field, e.target.value);
   };
 
@@ -73,19 +70,15 @@ export function Login() {
               onChange(e, "password")
             }
           />
-          <Button disabled={loading} type="submit">
-            {!loading ? (
-              "Авторизоваться"
-            ) : (
-              <LoadingIcon width="25px" height="25px" />
-            )}
+          <Button disabled={loading} isLoading={loading} type="submit">
+            "Авторизоваться"
           </Button>
         </form>
       </div>
       <div className={login}>
-        Ещё не зарегистрированы? {" "}
+        Ещё не зарегистрированы?{" "}
         <Link className={loginLink} to={PATHS.registration}>
-          Зарегистрироваться  
+          Зарегистрироваться
         </Link>
       </div>
     </div>

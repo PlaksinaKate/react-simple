@@ -89,12 +89,8 @@ export function Registration() {
               onChange(e, "repeatPassword")
             }
           />
-          <Button disabled={loading} type="submit">
-            {!loading ? (
-              "Зарегистрироваться"
-            ) : (
-              <LoadingIcon width="25px" height="25px" />
-            )}
+          <Button disabled={loading} isLoading={loading} type="submit">
+            "Зарегистрироваться"
           </Button>
         </form>
       </div>
