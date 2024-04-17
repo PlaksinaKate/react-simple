@@ -8,8 +8,8 @@ import { ChangeEvent, useState } from "react";
 import { Button, Input, Title } from "../../shared/ui";
 import { PATHS } from "../../shared/lib/react-router";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { removeUser } from "../../shared/lib/redux/slices/user-slice";
+import { useAppDispatch } from "../../shared/lib/redux/hooks";
 
 const validationSchema = yup.object({
   email: yup.string().required(MESSAGES.required).email(MESSAGES.emailError),
@@ -22,7 +22,7 @@ export function ChangeUserData() {
   const loginLink =
     "underline decoration-dashed decoration-dark-gray decoration-1 underline-offset-2	";
   const [loading, setLoading] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const {
     register,
